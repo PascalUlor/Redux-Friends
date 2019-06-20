@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
 import axios from 'axios';
+import uuid from 'uuid';
 import axiosImproved from "../axios";
 
 
@@ -40,10 +41,22 @@ export const updateFriend = id => {
 }
 }
 
-export const saving = data => {
+export const saving = status => {
     return {
         type: types.SAVING,
-        payload: data
+        payload: status
+    }
+}
+
+export const addFriend = (name, email, age) => {
+    return {
+        type: types.ADD_FRIEND,
+        payload: {
+            id: uuid(),
+            name,
+            age,
+            email 
+        }
     }
 }
 

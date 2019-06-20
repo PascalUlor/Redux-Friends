@@ -1,8 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Login from './components/Login';
-import MainView from './views/MainView';
+import ProtectedRoute from './views/ProtectedRoute';
 
 const StyledContainer = styled.div`
   padding: 10px;
@@ -11,11 +11,17 @@ const StyledContainer = styled.div`
 export default function App() {
   return (
     <StyledContainer>
-        <BrowserRouter>
+        <Router>
+        <h1>Friends Logger</h1>
+        <div>
+        You Are Welcome
+        <p>click link to view friends if you are logged in</p>
+        <Link to='/login'>Home</Link>
+        </div>
           <Route exact path='/' render={props => {
             if (localStorage.getItem('token')) {
               return (
-                  <MainView {...props}/>
+                  <ProtectedRoute {...props}/>
               );
             }
             return <Redirect to='login' />;
@@ -23,7 +29,7 @@ export default function App() {
 
 
           <Route path='/login' component={Login} />
-        </BrowserRouter>
+        </Router>
     </StyledContainer>
   );
 }

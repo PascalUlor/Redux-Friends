@@ -13,6 +13,8 @@ export const FriendList = (state = initialState, action) => {
         ...state,
         fetching: action.payload
       }
+    case types.ADD_FRIEND:
+        return [...state, action.payload]
     case types.SUCCESS:
         return {
             ...state, friends: action.payload
