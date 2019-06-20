@@ -55,7 +55,7 @@ export const login = (username, password) => dispatch => {
       .post(`${baseUrl}/login`, credentials)
       .then(res => {
           console.log('*******',res);
-        localStorage.setItem("token", res.data.payload);
+        localStorage.setItem('token', res.data.payload);
       })
       .catch(err => {
         console.log("AUTH FAILED!!!", err);
@@ -65,9 +65,9 @@ export const login = (username, password) => dispatch => {
 export const fetchData = () => dispatch => {
     dispatch(fetching(true));
     axiosImproved()
-      .get(baseUrl)
+      .get(`${baseUrl}/friends`)
       .then(res => {
-        dispatch(success(res.data.results));
+        dispatch(success(res.data));
         dispatch(fetching(false));
       })
       .catch(err => {

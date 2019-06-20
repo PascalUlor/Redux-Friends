@@ -4,12 +4,12 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-// import App from './App';
+import App from './App';
+import { FriendList } from './reducers';
 import * as serviceWorker from './serviceWorker';
-import MainView from './views/MainView';
 
 const combineReducer = combineReducers({
-
+friendList: FriendList
 })
 
 const store = createStore(
@@ -21,7 +21,7 @@ const store = createStore(
 
 ReactDOM.render(
 <Provider store={store}>
-<MainView />
+<App />
 </Provider>
 , document.getElementById('root'));
 
