@@ -12,10 +12,10 @@ export class Login extends React.Component {
     const password = this.passRef.current.value;
 
     this.props.login(username, password);
+    this.props.history.push('/');
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <h3>Login</h3>
