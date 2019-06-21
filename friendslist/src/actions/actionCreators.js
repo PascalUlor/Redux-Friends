@@ -20,6 +20,13 @@ export const success = data => {
     }
 }
 
+export const logedin = status => {
+    return {
+        type: types.LOGIN,
+        payload: status
+    }
+}
+
 export const failure = mssg =>{
     return {
         type: types.FAILURE,
@@ -63,12 +70,14 @@ export const addFriend = (name, email, age) => {
 
 export const login = (username, password) => dispatch => {
     const credentials = { username, password };
-    console.log(username, password)
+    dispatch(fetching(true));
     axios
       .post(`${baseUrl}/login`, credentials)
       .then(res => {
           console.log('*******',res);
         localStorage.setItem('token', res.data.payload);
+        dispatch(fetching(false));
+        dispatch(logedin(true));
       })
       .catch(err => {
         console.log("AUTH FAILED!!!", err);

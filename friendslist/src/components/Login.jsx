@@ -16,6 +16,7 @@ export class Login extends React.Component {
   }
 
   render() {
+    console.log('!!!!!!!!!',this.props)
     return (
       <div>
         <h3>Login</h3>
@@ -27,8 +28,12 @@ export class Login extends React.Component {
     );
   }
 }
-
+const mapStateToProps = (state) =>{
+    return{
+        logedin: state.friendList.logedin
+    }
+}
 export default connect(
-  state => state,
+    mapStateToProps,
   { login },
 )(Login);
