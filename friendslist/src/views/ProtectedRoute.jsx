@@ -7,7 +7,7 @@ import FriendPage from '../components/FrienPage';
 
 export function ProtectedRoute(props) {
   console.log('$$$$$$',props)
-  const { fetchData,friendList,fetching } = props;
+  const { fetchData,friends,fetching } = props;
   console.log('+++++++++',fetching);
   
   useEffect(()=>{
@@ -22,7 +22,7 @@ export function ProtectedRoute(props) {
 
   return (<div>
   <h1>Friend List</h1>
-  {friendList.friends.map(fr=>{
+  {friends.map(fr=>{
     return <FriendPage friend={fr} key={fr.id}/>
   })}
   </div>)
@@ -31,7 +31,7 @@ export function ProtectedRoute(props) {
 
 const mapStateToProps =(state)=>{
   return {
-    friendList: state.friendList,
+    friends: state.friendList.friends,
     fetching: state.friendList.fetching
   };
 }
