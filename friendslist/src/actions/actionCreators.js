@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 import axios from 'axios';
-import uuid from 'uuid';
-import axiosImproved from "../axios";
+// import uuid from 'uuid';
+import axiosWithAuth from "../axios";
 
 
 const baseUrl = "http://localhost:5000/api";
@@ -59,7 +59,6 @@ export const addFriend = (name, email, age) => {
     return {
         type: types.ADD_FRIEND,
         payload: {
-            id: uuid(),
             name,
             age,
             email 
@@ -86,7 +85,7 @@ export const login = (username, password) => dispatch => {
 
 export const fetchData = () => dispatch => {
     dispatch(fetching(true));
-    axiosImproved()
+    axiosWithAuth()
       .get(`${baseUrl}/friends`)
       .then(res => {
         dispatch(success(res.data));
@@ -97,3 +96,13 @@ export const fetchData = () => dispatch => {
         dispatch(fetching(false));
       });
   };
+
+  export const addData = ({name,age,email} ) => dispatch => {
+    axiosWithAuth().post(`${baseUrl}/friends`, {name,age,email})
+    .then(res=>{
+        console.log('+++++++',res);
+        dispatch(addFriend(res.data))
+    }).catch(err =>{
+        dispatch(failure(err.message));
+      })
+  }

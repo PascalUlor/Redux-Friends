@@ -1,4 +1,4 @@
-export {fetching, success, failure, deleteFriend, updateFriend, saving, login, fetchData, addFriend, logedin} from './actionCreators';
+export {fetching, success, failure, deleteFriend, updateFriend, saving, login, fetchData, addFriend, logedin, addData} from './actionCreators';
 
 export {FETCHING, SUCCESS, FAILURE, DELETE_FRIEND,
 LOGIN,
